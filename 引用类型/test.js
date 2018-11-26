@@ -1,6 +1,12 @@
-let list = [{ name: "tomo" }, { name: "jok" }, { name: "linda" }];
-list.map(item => {
-  item.name = "noio";
-  item = null;
-});
-console.log(list);
+global.color = "red";
+var obj = {
+  color: "blue"
+};
+function sayColor() {
+  console.log(this.color);
+}
+
+obj.sayColor = sayColor;
+obj.sayColor();
+var sayColor1 = obj.sayColor;
+sayColor1();
