@@ -1,5 +1,10 @@
-function setNumber(mix, max) {
-  let t = max - mix + 1;
-  return Math.floor(Math.random() * t + mix);
+function Create(name, age) {
+  this.name = name;
+  this.age = age;
+  this.sayhello = function() {
+    console.log(this.name);
+  };
 }
-console.log(setNumber(2, 10));
+const o1 = new Create("kimi", 21);
+const f = o1.sayhello;
+f();
