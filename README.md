@@ -1,3 +1,3 @@
-# javascript_base_learn
+# javascript
 
-javascript 高级程序设计，学习笔记
+javascript学习笔记
