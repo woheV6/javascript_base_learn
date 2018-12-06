@@ -1,0 +1,29 @@
+<!-- 123-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学习</title>
+</head>
+
+<body>
+   <div id='box'>
+        <div class="a">a</div>
+        <div class="a">b</div>
+        <div class="a">c</div>
+   </div>
+</body>
+<script>
+    document.querySelector('hushuashua')
+ const box=document.querySelector('#box')
+ const a_list=document.querySelectorAll('.a')
+ for(let i =0;i<a_list.length;i++){
+     const div=document.createElement('div')
+     div.appendChild(document.createTextNode(i))
+     box.appendChild(div)
+ }
+</script>
+</html>
+<!-- 123-->

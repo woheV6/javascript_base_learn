@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #head,#bloack{
+        height: 1500px;
+        width: 100%;
+    }
+    #find{
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+</style>
+<body>
+    <div id='find'>
+        <input placeholder="。。。。。。" id='find_c'>
+    </div>
+    <div id='head'>head
+            <botton>get</botton>
+    </div>
+   
+    <div class="b c d">
+        <span class="a">qq1</span>
+        <input placeholder="xixii ">
+       
+    </div>
+  
+    <div id='footer'>footer</div>
+    <div id='bloack'>bloack
+    </div>
+</body>
+<script>
+
+    document.querySelector('botton').onclick=function(){
+        const f=document.getElementById('footer')
+        f.scrollIntoView()
+    }
+
+</script>
+</html>

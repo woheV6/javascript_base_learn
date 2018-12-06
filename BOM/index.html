@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    width: 200px;
+    height: 300px;
+  }
+</style>
+<body>
+  <div id='vipo'>
+    打开新窗口
+  </div>
+</body>
+<script>
+  document.getElementById('vipo').onclick=()=>{
+    window.open('https://www.baidu.com','_self')
+  }
+     function getUrlSearch(){
+       let search=location.search
+       const obj={}
+       if(search){
+         search=search.substring(1).split('&')
+         search.forEach(item=>{
+           [key,value]=item.split('=')
+           obj[key]=value
+         })
+       }
+      return obj
+     }
+     getUrlSearch()
+     
+
+</script>
+</html>
