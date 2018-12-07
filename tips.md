@@ -89,3 +89,40 @@
      A 是在页面在呈现的过程中向页面直接输出了内容。
      B 是在页面加载完成之后 重写了页面。这样会导致页面上只存在<h1>插入的</h1>
    ```
+- 12. 页面离开时 做提示？
+   ```
+      function beforeUnloadHandler(event){
+         event.returnValue = "要离开吗？"
+      }
+      window.addEventListener('beforeunload',beforeUnloadHandler,true);
+   ```
+- 13. 计算样式  
+   - 可以获取到所有的样式，包括外链 内敛 等等
+   - document.defalutView.getComputedStyle(targetNode,null)
+   - 它返回一个CSSStyleDeclaration对象，包含当前元素的所有计算样式
+   - IE中 currentStyle也是CSSStyleDeclaration的实例
+- 14. 利用DOM深度优先遍历 找出目标元素下符合条件的DOM
+   ```
+   // 找出页面中width>50的元素
+   const target=document.getElementById('box')
+   const filter={
+      acceptNode:function(node){
+         let style=null
+         // 先判断有木有getComputedStyle这个方法
+         if(document.defauleView.getComputedStyle instanceof Function){
+            style=document.defaultView.getCompatedStyle(node,null)
+         }else{
+            style=document.currentStyle
+         }
+         // 筛选出 width>50的dom
+         return style.width.slice(0,-2)>50?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP
+      }
+   }
+   const walker=document.createTreeWalker(target,NodeFilter.SHOW_ELEMENT,filter,false)
+   let node = walker.nextNode()
+   const list=[]
+   while(node!==null){
+      list.push(node)
+      node=walker.nextNode()
+   }
+   ```

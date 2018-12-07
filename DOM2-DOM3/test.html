@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{padding: 0;
+    margin: 0;}
+    #box{
+        width: 300px;
+        height: 50px;
+        padding: 10px;
+        background: yellow;
+        border: 1px solid blue;
+        margin: 10px;
+        overflow: auto;
+    }
+    #out_box{
+        padding: 10px;
+        border: 10px solid lightcoral;
+    }
+</style>
+<body>
+    <div id='out_box'>
+        <p>123</p>
+        <div id='box'>xxxxxxxxxxx</div>
+        <div id='boy'>yyyyyyyyyyy</div>
+        <p>123</p>
+        <div>
+            <div id="inner" style="width:16px">ee</div>
+        </div>
+    </div>
+</body>
+<script>
+    const d=document.body
+    const out_box=document.getElementById('out_box')
+    const filter={
+        acceptNode:function(node){
+            let style=null
+            if(document.defaultView.getComputedStyle instanceof Function){
+                style=document.defaultView.getComputedStyle(node,null)
+            }else{
+                style=node.currentStyle
+            }
+            console.log(style)
+            return style.width.slice(0,-2)>50?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT
+        }
+    }
+    const walker=document.createTreeWalker(out_box,NodeFilter.SHOW_ELEMENT,filter,false)
+    let walker_node=walker.nextNode()
+    while(walker_node!==null){
+        console.log('walkerNode---',walker_node)
+        walker_node=walker.nextNode()
+    }
+
+</script>
+</html>
