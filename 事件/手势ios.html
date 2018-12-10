@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        height: 200px;
+        width: 300px;
+        position: relative;
+        background: yellow;
+    }
+</style>
+<body>
+        <div id='box'>ios 手势旋转</div>
+</body>
+<script>
+
+    // 我们来拖动这个盒子
+window.onload=()=>{
+    const box = document.getElementById('box')
+    let rotate=0
+    box.addEventListener('gesturestart',(event)=>{
+        event.preventDefault()
+        box.addEventListener('gesturechange',fnChange,false)
+        function fnChange(event){
+            event.preventDefault()
+            box.style.transform=`rotate(${event.rotation+rotate}deg)`
+            // 记录一下上次 旋转的角度 这样就不会出现 下一次旋转的时候 要闪一下回到初始位置的情况
+            rotate+=event.rotation
+        }
+        function fnEnd(event){
+            box.removeEventListener('gesturechange',fnChange,false)
+            box.removeEventListener('gestureend',fnEnd,false)
+        }
+        box.addEventListener('gestureend',fnEnd,false)
+    },false)
+}
+       
+</script>
+</html>

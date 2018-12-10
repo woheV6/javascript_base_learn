@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        height: 200px;
+        width: 300px;
+        position: relative;
+        background: yellow;
+    }
+</style>
+<body>
+        <div id='box'>ios  手势放大缩小 测试</div>
+        <div id='info'></div>
+</body>
+<script>
+    // 我们来拖动这个盒子
+window.onload=()=>{
+    const box = document.getElementById('box')
+    const info = document.getElementById('info')
+    function getstyle(dom){
+        const style=document.defaultView.getComputedStyle(dom,null)
+        return {
+            width:style.width.slice(0,-2),
+            height:style.height.slice(0,-2)
+        }
+    }
+    box.addEventListener('gesturestart',(event)=>{
+        event.preventDefault()
+        box.addEventListener('gesturechange',fnChange,false)
+        function fnChange(event){
+            if(getstyle(box).width*event.scale>100&& getstyle(box).height*event.scale>150){
+                box.style.width= getstyle(box).width*event.scale+'px'
+                box.style.height= getstyle(box).height*event.scale+'px'
+                box.innerHTML='scale: '+event.scale+'<br/>'+ 'width: '+box.style.width+'<br/>'+'height: '+box.style.height
+            }
+           
+        }
+        function fnEnd(event){
+            box.removeEventListener('gesturechange',fnChange,false)
+            box.removeEventListener('gestureend',fnEnd,false)
+        }
+        box.addEventListener('gestureend',fnEnd,false)
+    },false)
+}
+       
+</script>
+</html>

@@ -110,7 +110,7 @@
          let style=null
          // 先判断有木有getComputedStyle这个方法
          if(document.defauleView.getComputedStyle instanceof Function){
-            style=document.defaultView.getCompatedStyle(node,null)
+            style=document.defaultView.getComputedStyle(node,null)
          }else{
             style=document.currentStyle
          }
@@ -126,3 +126,5 @@
       node=walker.nextNode()
    }
    ```
+- 15. 如何 知道动态加载的script 资源下载完成？
+   - 利用 onload事件来判断

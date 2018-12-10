@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        height: 200px;
+        width: 300px;
+        position: relative;
+        background: yellow;
+    }
+</style>
+<body>
+        <div id='box'>测试touch</div>
+</body>
+<script>
+    // 我们来拖动这个盒子
+window.onload=()=>{
+    const box = document.getElementById('box')
+    box.addEventListener('touchstart',(event)=>{
+        // 记录一下盒子的初始位置 pasx pasy
+        const pasx = event.targetTouches[0].pageX - box.offsetLeft
+        const pasy= event.targetTouches[0].pageY - box.offsetTop
+        // 记录一下 identifier 唯一标示
+        const identifier=event.targetTouches[0].identifier
+        // 阻止事件默认行为
+        event.preventDefault()
+        // 开始监听手指移动
+        box.addEventListener('touchmove',fnMove,false)
+        box.addEventListener('touchend',fnEnd,false)
+        function fnMove(event){
+            // 边移动变设置盒子的位置
+            box.style.left=event.targetTouches[0].pageX-pasx+'px'
+            box.style.top=event.targetTouches[0].pageY-pasy+'px'
+
+        }
+        function fnEnd(event){
+            const i=Array.from(event.changedTouches).find(x=>{
+                return x.identifier===identifier
+            })
+            if(i){
+                box.removeEventListener('touchmove',fnMove,false)
+                box.removeEventListener('touchend',fnEnd,false)
+            }
+
+        }
+    })
+}
+       
+</script>
+</html>
